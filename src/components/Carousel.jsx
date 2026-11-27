@@ -75,7 +75,6 @@ const images = [
 ];
 
 const Carousel = () => {
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const currentImage = images[currentIndex];
@@ -93,7 +92,6 @@ const Carousel = () => {
   };
 
   useEffect(() => {
-
     const interval = setInterval(() => {
       setCurrentIndex((previous) =>
         (previous + 1) % images.length
@@ -101,83 +99,92 @@ const Carousel = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-
   }, []);
 
   return (
+    <section className="mx-auto my-16 w-full max-w-7xl px-4 sm:px-6">
 
-    <section className="container my-5">
+      {/* ENCABEZADO */}
+      <div className="mb-8 text-center">
 
-      <div className="text-center mb-4">
-
-        <p className="subtitulo-dulce">
-          NUESTRAS DELICIAS
+        <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#bd7888]">
+          Nuestras delicias
         </p>
 
-        <h2 className="fw-bold">
+        <h2 className="mb-4 text-3xl font-bold text-[#68434a] sm:text-4xl">
           Descubre nuestro mundo dulce
         </h2>
 
-        <p className="text-secondary">
+        <p className="text-[#876f70]">
           Diez creaciones preparadas especialmente para ti.
         </p>
 
       </div>
 
-      <div className="carousel-container">
+      {/* CARRUSEL */}
+      <div className="relative overflow-hidden rounded-3xl bg-[#f8e2e5] shadow-xl">
 
         <img
           src={currentImage.image}
           alt={currentImage.title}
-          className="carousel-image"
+          className="h-[280px] w-full object-cover sm:h-[400px] lg:h-[500px]"
         />
 
-        <div className="carousel-caption-custom">
+        {/* DESCRIPCIÓN */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#3d2028]/95 via-[#3d2028]/60 to-transparent px-5 pb-8 pt-20 text-center text-white sm:px-12 sm:pb-10">
 
-          <h3>{currentImage.title}</h3>
+          <h3 className="mb-3 text-2xl font-bold sm:text-4xl">
+            {currentImage.title}
+          </h3>
 
-          <p>{currentImage.description}</p>
+          <p className="mb-3 text-sm text-white/90 sm:text-lg">
+            {currentImage.description}
+          </p>
 
-          <span>
+          <span className="text-xs text-white/75 sm:text-sm">
             Fotografía {currentIndex + 1} de {images.length}
           </span>
 
         </div>
 
+        {/* BOTÓN ANTERIOR */}
         <button
           type="button"
-          className="carousel-control previous"
           onClick={previousImage}
           aria-label="Fotografía anterior"
+          className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[#80515b] shadow-lg transition hover:scale-110 hover:bg-white sm:left-5 sm:h-12 sm:w-12"
         >
           &#10094;
         </button>
 
+        {/* BOTÓN SIGUIENTE */}
         <button
           type="button"
-          className="carousel-control next"
           onClick={nextImage}
           aria-label="Fotografía siguiente"
+          className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-[#80515b] shadow-lg transition hover:scale-110 hover:bg-white sm:right-5 sm:h-12 sm:w-12"
         >
           &#10095;
         </button>
 
       </div>
 
-      <div className="carousel-indicators-custom">
+      {/* INDICADORES */}
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
 
         {images.map((image, index) => (
-
           <button
             type="button"
             key={image.id}
-            className={`indicator ${
-              currentIndex === index ? "active" : ""
-            }`}
             onClick={() => setCurrentIndex(index)}
             aria-label={`Mostrar fotografía ${index + 1}`}
+            aria-current={currentIndex === index ? "true" : undefined}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              currentIndex === index
+                ? "w-8 bg-[#bd7888]"
+                : "w-2 bg-[#e9cbd1] hover:bg-[#bd7888]"
+            }`}
           />
-
         ))}
 
       </div>

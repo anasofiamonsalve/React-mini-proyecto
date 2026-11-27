@@ -1,49 +1,40 @@
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light navbar-dulce sticky-top">
-      <div className="container">
+  const estiloEnlace = ({ isActive }) =>
+    `py-2 text-sm font-semibold no-underline transition-colors hover:text-[#bd7888] sm:text-base ${
+      isActive ? "text-[#bd7888]" : "text-[#65464a]"
+    }`;
 
-        <NavLink className="navbar-brand marca-dulce" to="/">
-          <span>🧁</span> Dulce <strong>Encanto</strong>
+  return (
+    <nav className="sticky top-0 z-50 w-full border-b border-[#f0dce0] bg-[#fffaf6] shadow-sm">
+      <div className="mx-auto flex min-h-[75px] max-w-7xl flex-col items-center justify-center gap-3 px-4 py-3 sm:flex-row sm:justify-between sm:gap-6 sm:py-0">
+
+        <NavLink
+          to="/"
+          className="whitespace-nowrap text-xl font-semibold text-[#80515b] no-underline sm:text-2xl"
+        >
+          🧁 Dulce <strong>Encanto</strong>
         </NavLink>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menuPrincipal"
-          aria-controls="menuPrincipal"
-          aria-expanded="false"
-          aria-label="Mostrar navegación"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-7">
+          <NavLink to="/" end className={estiloEnlace}>
+            Inicio
+          </NavLink>
 
-        <div className="collapse navbar-collapse" id="menuPrincipal">
-          <ul className="navbar-nav ms-auto">
+          <NavLink to="/nosotros" className={estiloEnlace}>
+            Nosotros
+          </NavLink>
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/" end>
-                Inicio
-              </NavLink>
-            </li>
+          <NavLink to="/contacto" className={estiloEnlace}>
+            Contacto
+          </NavLink>
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/nosotros">
-                Nosotros
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contacto">
-                Contacto
-              </NavLink>
-            </li>
-
-          </ul>
+          <NavLink to="/login" className={estiloEnlace}>
+            Iniciar sesión
+          </NavLink>
         </div>
+
       </div>
     </nav>
   );

@@ -1,195 +1,312 @@
+
+/* =========================================
+   DULCE ENCANTO - ESTILOS GLOBALES
+   ========================================= */
+
+/* Orden de prioridad de las capas CSS */
+@layer bootstrap, theme, base, components, utilities;
+
+/* TIPOGRAFÍAS */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* BOOTSTRAP EN UNA CAPA INFERIOR */
+@import "bootstrap/dist/css/bootstrap.min.css" layer(bootstrap);
+
+/* TAILWIND CSS */
+@import "tailwindcss";
+
+
+/* =========================================
+   1. ESTILOS BASE
+   ========================================= */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #fffaf6;
+    color: #49352f;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    transition: color 0.3s ease;
+  }
+
+  button,
+  input {
+    font-family: 'DM Sans', sans-serif;
+  }
 }
 
-body {
-  background: #fffaf6;
-  color: #49352f;
-  font-family: 'DM Sans', sans-serif;
+
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+
+@layer components {
+
+  .navbar-dulce {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    width: 100%;
+    background: #fffaf6;
+    border-bottom: 1px solid #f0dce0;
+    box-shadow: 0 3px 16px rgba(92, 57, 60, 0.07);
+  }
+
+  .header-dulce {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 75px;
+    gap: 25px;
+  }
+
+  .marca-dulce {
+    color: #80515b !important;
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  .menu-dulce {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .menu-dulce a {
+    color: #65464a !important;
+    font-weight: 600;
+    text-decoration: none !important;
+  }
+
+  .menu-dulce a:hover,
+  .menu-dulce a.active {
+    color: #bd7888 !important;
+  }
+
+  .navbar-dulce .nav-link {
+    color: #65464a;
+    font-weight: 600;
+  }
+
+  .navbar-dulce .nav-link:hover,
+  .navbar-dulce .nav-link.active {
+    color: #bd7888;
+  }
+
+
+  /* =========================================
+     3. PORTADA PRINCIPAL
+     ========================================= */
+
+  .hero-dulce {
+    padding: 110px 15px;
+    background: linear-gradient(
+      135deg,
+      #f8e2e5,
+      #fff1e5,
+      #f5d9d2
+    );
+  }
+
+  .hero-dulce h1 {
+    color: #68434a;
+  }
+
+  .hero-dulce h1 span {
+    color: #bd7888;
+  }
+
+  .hero-dulce .lead {
+    max-width: 680px;
+    margin: auto;
+    color: #765d5b;
+  }
+
+  .hero-etiqueta,
+  .subtitulo-dulce {
+    color: #b36f7e;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+
+  /* =========================================
+     4. BOTONES GENERALES
+     ========================================= */
+
+  .btn-dulce {
+    display: inline-block;
+    background: #a96776;
+    color: white;
+    border-radius: 30px;
+    padding: 13px 28px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-dulce:hover {
+    background: #87515f;
+    color: white;
+    transform: translateY(-3px);
+  }
+
+
+  /* =========================================
+     5. PRESENTACIÓN
+     ========================================= */
+
+  .intro-dulce h2 {
+    color: #68434a;
+  }
+
+  .intro-dulce p:last-child {
+    max-width: 650px;
+  }
+
+
+  /* =========================================
+     6. CARRUSEL
+     ========================================= */
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #ead9d5;
+  }
+
+  .carousel-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-caption-custom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 35px 70px;
+    color: white;
+    background: linear-gradient(
+      transparent,
+      rgba(48, 28, 31, 0.88)
+    );
+  }
+
+  .carousel-caption-custom h3 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .carousel-caption-custom p {
+    font-size: 17px;
+  }
+
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(80, 48, 54, 0.65);
+    color: white;
+    width: 45px;
+    height: 55px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  .previous {
+    left: 15px;
+  }
+
+  .next {
+    right: 15px;
+  }
+
+  .carousel-indicators-custom {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #e3c4ca;
+    cursor: pointer;
+  }
+
+  .indicator.active {
+    background: #a96776;
+    transform: scale(1.3);
+  }
+
+
+  /* =========================================
+     7. FOOTER
+     ========================================= */
+
+  .footer-dulce {
+    background: #68434a;
+    color: #fff8f4;
+  }
+
+  .marca-footer {
+    color: white;
+  }
+
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Playfair Display', serif;
-}
 
-/* MENU */
-.navbar-dulce {
-  background: #fffaf6;
-  border-bottom: 1px solid #f0dce0;
-  box-shadow: 0 3px 16px rgba(92,57,60,.07);
-}
+/* =========================================
+   8. RESPONSIVIDAD
+   ========================================= */
 
-.marca-dulce {
-  color: #80515b;
-  font-size: 1.45rem;
-}
-
-.navbar-dulce .nav-link {
-  color: #65464a;
-  font-weight: 600;
-}
-
-.navbar-dulce .nav-link:hover,
-.navbar-dulce .nav-link.active {
-  color: #bd7888;
-}
-
-/* PORTADA */
-.hero-dulce {
-  padding: 110px 15px;
-  background: linear-gradient(
-    135deg,
-    #f8e2e5,
-    #fff1e5,
-    #f5d9d2
-  );
-}
-
-.hero-dulce h1 {
-  color: #68434a;
-}
-
-.hero-dulce h1 span {
-  color: #bd7888;
-}
-
-.hero-dulce .lead {
-  max-width: 680px;
-  margin: auto;
-  color: #765d5b;
-}
-
-.hero-etiqueta,
-.subtitulo-dulce {
-  color: #b36f7e;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-/* BOTON */
-.btn-dulce {
-  background: #a96776;
-  color: white;
-  border-radius: 30px;
-  padding: 13px 28px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: .3s;
-}
-
-.btn-dulce:hover {
-  background: #87515f;
-  color: white;
-  transform: translateY(-3px);
-}
-
-/* PRESENTACION */
-.intro-dulce h2 {
-  color: #68434a;
-}
-
-.intro-dulce p:last-child {
-  max-width: 650px;
-}
-
-/* CARRUSEL */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  height: 480px;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #ead9d5;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.carousel-caption-custom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 35px 70px;
-  color: white;
-  background: linear-gradient(
-    transparent,
-    rgba(48,28,31,.88)
-  );
-}
-
-.carousel-caption-custom h3 {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.carousel-caption-custom p {
-  font-size: 17px;
-}
-
-.carousel-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: rgba(80,48,54,.65);
-  color: white;
-  width: 45px;
-  height: 55px;
-  font-size: 25px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.previous {
-  left: 15px;
-}
-
-.next {
-  right: 15px;
-}
-
-.carousel-indicators-custom {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: #e3c4ca;
-  cursor: pointer;
-}
-
-.indicator.active {
-  background: #a96776;
-  transform: scale(1.3);
-}
-
-/* FOOTER */
-.footer-dulce {
-  background: #68434a;
-  color: #fff8f4;
-}
-
-.marca-footer {
-  color: white;
-}
-
-/* RESPONSIVE */
 @media (max-width: 768px) {
+
   .hero-dulce {
     padding: 75px 15px;
   }
@@ -213,4 +330,23 @@ h1, h2, h3, h4 {
   .carousel-caption-custom p {
     font-size: 14px;
   }
+
+}
+
+@media (max-width: 600px) {
+
+  .header-dulce {
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 12px;
+  }
+
+  .menu-dulce {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
 }
